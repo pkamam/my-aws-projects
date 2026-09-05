@@ -184,4 +184,3 @@ output "website_url" {
   value       = "http://${aws_lb.external_alb.dns_name}"
   description = "Paste this URL into your browser to view your website."
 }
-
