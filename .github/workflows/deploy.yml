@@ -2,7 +2,7 @@ name: Deploy Static Website Infrastructure
 
 on:
   push:
-    branches: [ "iam-project" ]
+    branches: [ "main" ]
 
 permissions:
   id-token: write
