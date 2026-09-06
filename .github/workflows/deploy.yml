@@ -11,16 +11,20 @@ permissions:
 jobs:
   terraform-and-sync:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # The OIDC handshake: swaps GitHub security context for temporary AWS keys
       - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::541099636553:role/github-actions-infra-role
           aws-region: us-east-1
+          role-session-name: GitHubActions
+
+      - name: Check AWS Identity
+        run: aws sts get-caller-identity
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
